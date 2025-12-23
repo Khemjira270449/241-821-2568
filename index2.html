@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container .item {
+            background-color: lightblue;
+        }
+        .button {
+            background-color: green;
+            clear: white;
+            padding: 2px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button.active {
+            background-color: blue;
+        }
+        .button.warning {
+            background-color: red;
+        }
+        .item.button.warning {     
+         background-color: lightblue;
+        }
+        .item1 + .item2  {     
+         background-color: lightblue;
+        }
+        input[type="text"]{
+            border: 2px solid green;
+            margin-bottom: 10px;
+        }
+        .betton {
+            background-color: blue;
+            clear: white;
+            padding: 10px 20px;
+        }
+        .button:hover {
+            background-color: green;
+        }
+        .button:active {
+            background-color: red;
+        }
+        .button:focus {
+            background-color: yellow;
+        }
+        .button:focus {
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    container content
+    <div class="item">
+    Item content
+    </div>
+</div>
+<div class="footer-container">
+    container content
+    <div class="item">
+    Item content
+    </div>
+</div>
+<betton class="button">Click Me</betton>
+<betton class="button active">Delete</betton>
+<betton class="button warning">Warning</betton>
+
+<div class="item1">Item 1</div>
+<div class="item2">Item 2</div>
+
+<input type="text" name="samplee-input">
+<input type="text" name="another-input">
+<input type="text" name="number">
+
+    <input type="text"
+<!-- :hover = วาง :active = คลิก :focus = cursor อยู่ตรง -->
+    <button class="button">Click Me!</button>
+</body>
+</html>
