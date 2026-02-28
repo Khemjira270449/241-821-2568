@@ -9,8 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: webdb
-    ports:
-      - "8700:3306"
+    ports: # ชื่อ ports ต้องตรงกันระหว่าง index.js + docker-compose
+      - "8821:3306"
     volumes:
       - mysql_data_821:/var/lib/mysql
     networks:
@@ -41,3 +41,4 @@ networks:
 volumes:
   mysql_data_821:
     driver: local
+    
