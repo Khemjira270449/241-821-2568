@@ -3,11 +3,16 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
 const e = require('express');
 const app = express();
+const cors = require('cors');
 const port = 8000
+
 app.use(bodyParser.json());
+app.use(cors());
 
-
+let users = []
+let counter = 1 ;
 let conn = null
+
 const initDBConnection = async () => {
     conn = await mysql.createConnection({
         host: 'localhost',
@@ -47,11 +52,11 @@ app.post('/users', async (req, res) => {
 app.get('/users/:id', async (req, res) => {
     try {
         let id = req.params.id
-        const results = await conn.query('SELECT * FROM users WHERE id = ?'.id)
+        const results = await conn.query('SELECT * FROM users WHERE id = ?', id)
         if (results[0].length == 0) {
             throw { statusCode: 404, message: 'User not found' };
         }
-        res.json(results[0][0]);
+        res.json(results[0]);
     }
     catch (error) {
         console.error('Enter fetching user:', error.message);
@@ -96,7 +101,7 @@ app.delete('/users/:id', async (req, res) => {
             throw { statusCode: 404, message: 'User not found' };
         }
         res.json({
-            message: 'User delete successfully'
+            message: 'User delete successfully ' + id
         });
     }
     catch (error) {
@@ -113,5 +118,4 @@ app.delete('/users/:id', async (req, res) => {
 app.listen(port, async () => {
     await initDBConnection();
     console.log(`Server is running on port ${port}`)
-    const port = 8000;
 });

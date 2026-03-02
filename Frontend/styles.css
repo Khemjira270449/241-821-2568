@@ -3,6 +3,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
 body {
     background-color: #f2f2f2;
     margin: 0;
@@ -58,7 +59,20 @@ textarea {
     border: 1px solid #ccc;
     resize: none;
 }
-
+.message {
+    background-color: #ddd;
+    padding: 10 px;
+    border-radius: 6 px;
+    margin-bottom: 15 px;
+}
+.message.success {
+    background-color: #4CAF50;
+    color: block
+}
+.message.danger {
+    background-color: #f44336;
+    color: block
+}
 .center {
     text-align: center;
     margin-top: 20px;
