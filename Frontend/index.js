@@ -9,13 +9,13 @@ window.onload = async () => {
     if (id) {
         mode = 'EDIT'
         selectedId = id;
-    }
-}
+
         //1ใดึงข้อมูล
         try {
             const response = await axios.get(`${BASE_URL}/users/${id}`);
-            const user = response.data;
-            console.log('user',user)
+            console.log('response', response.data);
+            const user = response.data
+            
             //2.นำข้อมูลที่ได้มาแสดงใน from เพื่อให้ผู้ใช้แก้ไข
              let firstNameDOM = document.querySelector('input[name=firstname]');
              let lastNameDOM = document.querySelector('input[name=lastname]');
@@ -25,14 +25,14 @@ window.onload = async () => {
 
              firstNameDOM.value = user.firstname;
              lastNameDOM.value = user.lastname;
-             ageDOM.value = user.age;;
+             ageDOM.value = user.age;
              descriptionDOM.value = user.description;
 
 
-             let genderDOM = querySelector('input[name=gender]:checked') || {};
-             let interestDOMs = querySelectorAll('input[name=interests]:checked') || {};
+             let genderDOM = querySelectorAll('input[name=gender]');
+             let interestDOMs = querySelectorAll('input[name=interests]');
 
-             for (let i = 0; i < interestDOMs.length; i++) {
+             for (let i = 0; i < interestDOMs.length; i++) { //วนลูป เช็คค่า
                 if (genderDOM[i].value == user.gender) {
                     genderDOM[i].checked = true;
                 }
@@ -42,14 +42,15 @@ window.onload = async () => {
                     interestDOMs[i].checked = true;
                 }
              }
-
+        }catch (error) {
+            console.log('erroe',error);
         }
     }
-
 }
+//userdata checked ว่ามีค่า?
 const validateData = (userData) => {
-    let errors = [];
-    if (!userData.firstname) {
+    let errors = []; //ตัวแปรรัยค่า arr
+    if (!userData.firstname) { // ตรงค่าที่รันมา
         errors.push('กรุณากรอกชื่อ');
     }
     if (!userData.lastname) {
@@ -120,7 +121,6 @@ const submitData = async () => {
         console.log('response', response.data);
         messageDOM.innerText = 'บันทึกข้อมูลสำเร็จ'
         messageDOM.className = 'message success'
-
     } catch (error) {
         console.log('error message', error.message);
         console.log('error', error.errors);
